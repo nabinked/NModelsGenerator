@@ -21,9 +21,10 @@ namespace NModelsGenerator.Core
 
         public int Run(Config config)
         {
+            _config = config;
             var dbActions = new DbActions(config.ConnectionString, config.DbType);
             Log("Getting schema information from database. This may take some time depending upon the schema size.");
-            var schemas = dbActions.GetAllSchemas(_config.Schemas);
+            var schemas = dbActions.GetAllSchemas(config.Schemas);
 
             GenerateClasses(schemas);
             return 0;

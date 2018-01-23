@@ -10,7 +10,7 @@ namespace NModelsGenerator.Core
     partial class Generator
     {
         private readonly IDictionary<string, string> _variables;
-        private readonly Config _config;
+        private Config _config;
         private readonly DirectoryInfo _projectFolder;
         private const string ViewFolderName = "Views";
         private readonly IList<string> _addedItems;

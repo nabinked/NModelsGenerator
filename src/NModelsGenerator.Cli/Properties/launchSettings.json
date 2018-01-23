@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "NModelsGenerator.Cli": {
+      "commandName": "Project",
+      "commandLineArgs": "run",
+      "workingDirectory": "C:\\Users\\nabin\\source\\repos\\ConsoleApp1\\ConsoleApp1"
+    }
+  }
+}

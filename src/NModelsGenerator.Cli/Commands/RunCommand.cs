@@ -22,7 +22,7 @@ namespace NModelsGenerator.Cli.Commands
         public int Run()
         {
             var currentDirectory = GetCurrentDirectory();
-            var config = MiscUtils.GetConfig(_configArgument.Value ?? currentDirectory);
+            var config = MiscUtils.GetConfig(_configArgument.Value ?? Path.Combine(currentDirectory, Constants.ConfigFileName));
             var generator = new Generator(new DirectoryInfo(currentDirectory));
             return generator.Run(config);
         }

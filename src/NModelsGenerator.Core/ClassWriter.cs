@@ -115,7 +115,7 @@ namespace NModelsGenerator.Core
         {
             var classAttributeList = new List<string>();
             var attributes = (IDictionary<string, object>)_classAttributes;
-            if (_classAttributes.Any())
+            if (_classAttributes != null && _classAttributes.Any())
                 foreach (var attribute in attributes)
                 {
                     var attributeString = "[";

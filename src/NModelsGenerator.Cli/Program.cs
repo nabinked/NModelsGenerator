@@ -19,6 +19,7 @@ namespace NModelsGenerator.Cli
             }
 
             return options.Command.Run();
+
         }
     }
 }
