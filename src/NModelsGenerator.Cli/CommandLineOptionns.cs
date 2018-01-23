@@ -16,13 +16,7 @@ namespace NModelsGenerator.Cli
 
             var app = new CommandLineApplication();
 
-            var isQuietOption = app.Option("--extra-quiet|-q",
-                                           "Instruct the ninja to do its best to be even more quiet",
-                                           CommandOptionType.NoValue);
-
             RootCommandConfiguration.Configure(app, options);
-
-            options.IsQuiet = isQuietOption.HasValue();
 
             var result = app.Execute(args);
 
@@ -34,9 +28,7 @@ namespace NModelsGenerator.Cli
 
             return options;
         }
-
         public ICommand Command { get; set; }
-        public bool IsQuiet { get; set; }
-
+        //Add global options below
     }
 }

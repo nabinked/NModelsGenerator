@@ -12,6 +12,7 @@ namespace NModelsGenerator.Cli.CommandConfigurations
         {
 
             app.Command("init", c => InitCommandConfiguration.Configure(c, options));
+            app.Command("run", c => RunCommandConfiguration.Configure(c, options));
 
             app.OnExecute(() =>
             {
