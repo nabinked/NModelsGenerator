@@ -1,8 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AssemblyName>dotnet-nmg</AssemblyName>
+    <Authors>Nabin Karki Thapa</Authors>
+    <Version>1.0.2</Version>
+    <Description>
+      The CLI tool for NModelsGenerator, a visual studio extension to create POCO classes from Database Tables and Views.
+    </Description>
+    <DebugType>portable</DebugType>
+    <Copyright>Nabin Karki Thapa</Copyright>
+    <PackageTags>dotnet cli tool</PackageTags>
+    <PackageType>DotnetCliTool</PackageType>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://github.com/nabinked/NModelsGenerator</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/nabinked/NModelsGenerator/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/nabinked/NModelsGenerator</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReleaseNotes>More information is available at https://github.com/nabinked/NModelsGenerator </PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,4 +29,7 @@
     <ProjectReference Include="..\NModelsGenerator.Core\NModelsGenerator.Core.csproj" />
   </ItemGroup>
 
+  <Target Name="PostcompileScript" AfterTargets="Pack" Condition=" '$(IsCrossTargetingBuild)' != 'true' ">
+    <Exec Command="call nugetpush $(Configuration) $(MSBuildProjectDirectory)/bin/$(Configuration)/$(AssemblyName).$(Version).nupkg" />
+  </Target>
 </Project>
