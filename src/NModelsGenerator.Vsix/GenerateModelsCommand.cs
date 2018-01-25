@@ -38,6 +38,8 @@ namespace NModelsGenerator.Vsix
         private static DTE _dte;
         private INModelsGenerator _generator;
         private readonly Project _project;
+        private IVsStatusbar _statusBar;
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GenerateModelsCommand"/> class.
@@ -51,6 +53,7 @@ namespace NModelsGenerator.Vsix
             _dte = (DTE)this.ServiceProvider.GetService(typeof(DTE));
             _project = _dte.GetActiveProject();
             _generator = new Generator(new DirectoryInfo(_project.GetRootFolder()));
+            _generator.OnLogEvent += Log;
 
 
             if (this.ServiceProvider.GetService(typeof(IMenuCommandService)) is OleMenuCommandService commandService)
@@ -93,6 +96,7 @@ namespace NModelsGenerator.Vsix
         /// <param name="e">Event args.</param>
         private void MenuItemCallback(object sender, EventArgs e)
         {
+            _statusBar = (IVsStatusbar)ServiceProvider.GetService(typeof(SVsStatusbar));
             bool hasConfigFile = ProjectHasConfigFile();
 
             if (!hasConfigFile)
@@ -118,6 +122,21 @@ namespace NModelsGenerator.Vsix
 
         }
 
+        private void Log(string logText)
+        {
+            // Make sure the status bar is not frozen  
+            int frozen;
+            _statusBar.IsFrozen(out frozen);
+            if (frozen != 0)
+            {
+                _statusBar.FreezeOutput(0);
+            }
+            // Set the status bar text and make its display static.  
+            _statusBar.SetText(logText);
+            // Freeze the status bar.  
+            _statusBar.FreezeOutput(1);
+
+        }
 
 
         private void OpenSyncToDocument(string file)

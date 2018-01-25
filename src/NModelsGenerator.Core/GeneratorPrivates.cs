@@ -59,7 +59,7 @@ namespace NModelsGenerator.Core
             var folderPathForEntity = _projectFolder;
             if (_config.SchemaBasedFolders)
             {
-                folderPathForEntity = Directory.CreateDirectory(Path.Combine(_projectFolder.Name, schemaFolderName));
+                folderPathForEntity = Directory.CreateDirectory(Path.Combine(_projectFolder.FullName, schemaFolderName));
             }
             if (entity.IsView)
             {

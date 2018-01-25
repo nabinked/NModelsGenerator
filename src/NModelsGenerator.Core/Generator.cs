@@ -19,6 +19,15 @@ namespace NModelsGenerator.Core
             _removedItems = new List<string>();
         }
 
+        public Generator(string projectFolderPath) : this(new DirectoryInfo(projectFolderPath))
+        {
+        }
+
+        public Generator() : this(Directory.GetCurrentDirectory())
+        {
+
+        }
+
         public int Run(Config config)
         {
             _config = config;

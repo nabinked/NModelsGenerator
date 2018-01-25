@@ -18,8 +18,17 @@ namespace NModelsGenerator.Cli
                 return 1;
             }
 
+            if (options.Command.NModelsGenerator != null)
+            {
+                options.Command.NModelsGenerator.OnLogEvent += CommandOnOnLogEvent;
+            }
             return options.Command.Run();
 
+        }
+
+        private static void CommandOnOnLogEvent(string logText)
+        {
+            Console.WriteLine(logText);
         }
     }
 }

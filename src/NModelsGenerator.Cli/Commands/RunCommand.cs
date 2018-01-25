@@ -17,15 +17,17 @@ namespace NModelsGenerator.Cli.Commands
         {
             _configArgument = configArgument;
             _options = options;
+            NModelsGenerator = new Generator();
         }
 
         public int Run()
         {
             var currentDirectory = GetCurrentDirectory();
             var config = MiscUtils.GetConfig(_configArgument.Value ?? Path.Combine(currentDirectory, Constants.ConfigFileName));
-            var generator = new Generator(new DirectoryInfo(currentDirectory));
-            return generator.Run(config);
+            return NModelsGenerator.Run(config);
         }
+
+        public INModelsGenerator NModelsGenerator { get; set; }
 
         private string GetCurrentDirectory()
         {

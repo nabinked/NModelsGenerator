@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.CommandLineUtils;
+using NModelsGenerator.Common;
+using NModelsGenerator.Core;
 
 namespace NModelsGenerator.Cli.Commands
 {
@@ -12,6 +14,7 @@ namespace NModelsGenerator.Cli.Commands
         public RootCommand(CommandLineApplication app)
         {
             _app = app;
+            NModelsGenerator = new Generator();
         }
 
         public int Run()
@@ -20,5 +23,7 @@ namespace NModelsGenerator.Cli.Commands
 
             return 1;
         }
+
+        public INModelsGenerator NModelsGenerator { get; set; }
     }
 }

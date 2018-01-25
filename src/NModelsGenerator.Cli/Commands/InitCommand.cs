@@ -14,18 +14,14 @@ namespace NModelsGenerator.Cli.Commands
         public InitCommand(CommandLineOptions options)
         {
             _options = options;
+            NModelsGenerator = new Generator();
         }
 
         public int Run()
         {
-            var currentDirectory = GetCurrentDirectory();
-            var generator = new Generator(new DirectoryInfo(currentDirectory));
-            return generator.Init();
+            return NModelsGenerator.Init();
         }
 
-        private string GetCurrentDirectory()
-        {
-            return Directory.GetCurrentDirectory();
-        }
+        public INModelsGenerator NModelsGenerator { get; set; }
     }
 }
