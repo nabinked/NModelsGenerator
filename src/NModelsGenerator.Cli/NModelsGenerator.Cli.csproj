@@ -1,14 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
-    <AssemblyName>dotnet-nmg</AssemblyName>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <ToolCommandName>nmg</ToolCommandName>
     <Authors>Nabin Karki Thapa</Authors>
-    <Version>1.0.2</Version>
+    <Version>0.0.1</Version>
+    <PackAsTool>true</PackAsTool>
     <Description>
       The CLI tool for NModelsGenerator, a visual studio extension to create POCO classes from Database Tables and Views.
     </Description>
-    <DebugType>portable</DebugType>
     <Copyright>Nabin Karki Thapa</Copyright>
     <PackageTags>dotnet cli tool</PackageTags>
     <PackageType>DotnetCliTool</PackageType>
@@ -25,10 +25,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NModelsGenerator.Common\NModelsGenerator.Common.csproj" />
-    <ProjectReference Include="..\NModelsGenerator.Core\NModelsGenerator.Core.csproj" />
+    <ProjectReference Include="..\NModelsGenerator.Common\NModelsGenerator.Common.csproj" PrivateAssets="all" />
+    <ProjectReference Include="..\NModelsGenerator.Core\NModelsGenerator.Core.csproj" PrivateAssets="all" />
   </ItemGroup>
-
+  <Target Name="IncludeP2POutput">
+    <ItemGroup>
+      <BuildOutputInPackage Include="$(OutputPath)NModelsGenerator.Common.dll" />
+      <BuildOutputInPackage Include="$(OutputPath)NModelsGenerator.Core.dll" />
+    </ItemGroup>
+  </Target>
   <Target Name="PostcompileScript" AfterTargets="Pack" Condition=" '$(IsCrossTargetingBuild)' != 'true' ">
     <Exec Command="call nugetpush $(Configuration) $(MSBuildProjectDirectory)/bin/$(Configuration)/$(AssemblyName).$(Version).nupkg" />
   </Target>
