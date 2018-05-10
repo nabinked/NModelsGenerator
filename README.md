@@ -7,7 +7,7 @@ A visual studio extension to create new DTO classes from database tables/views i
 ### Dotnet global cli tool
 `dotnet tool install NModelsGenerator.Cli --version 0.0.2`
 - Go the the project folder where you want to generate classes. Open your command line tool and go: 
-`nmg run`
+`nmg init` which will add a json config file in the same folder. Setup your config and go `nmg run`
 - Rest is quite self explanotary
 ### Visual Studio Extension
 - Install NModelsGenerator from the visual studio extensions [marketplace/gallery](https://marketplace.visualstudio.com/items?itemName=NabinKarkiThapa.NModelsGenerator) or search for NModelsGenerator inside Visual Studio Tools > Extensions and Updates
