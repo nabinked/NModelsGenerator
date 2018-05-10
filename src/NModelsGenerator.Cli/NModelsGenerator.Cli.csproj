@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <ToolCommandName>nmg</ToolCommandName>
     <Authors>Nabin Karki Thapa</Authors>
-    <Version>0.0.1</Version>
+    <Version>0.0.2</Version>
     <PackAsTool>true</PackAsTool>
     <Description>
       The CLI tool for NModelsGenerator, a visual studio extension to create POCO classes from Database Tables and Views.
