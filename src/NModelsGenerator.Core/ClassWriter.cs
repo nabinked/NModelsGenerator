@@ -67,7 +67,7 @@ namespace NModelsGenerator.Core
         {
             foreach (DbColumn column in columns)
             {
-                if (_baseClassProperties.Any() && _baseClassProperties.Contains(column.ColumnName.ToPasacalCase().ToLower())) continue;
+                if (_baseClassProperties.Any() && _baseClassProperties.Contains(column.ColumnName.ToPasacalCase())) continue;
                 _syntaxLines.Add($"{doubleTab}public {GetDataType(column.DataType)} {column.ColumnName.ToPasacalCase()} {{get; set;}}");
                 AddNewLine();
             }
@@ -106,7 +106,7 @@ namespace NModelsGenerator.Core
             foreach (var attribute in attributes)
             {
                 var line = $"{singleTab + attribute}";
-                _syntaxLines.Add(ReplaceVariables(line));
+                _syntaxLines.Add(line.ReplaceVariables(_variables));
             }
 
         }
@@ -129,7 +129,7 @@ namespace NModelsGenerator.Core
 
                             foreach (var property in properties)
                             {
-                                object finalValue = ReplaceVariables(property.Value.ToString());
+                                object finalValue = property.Value.ToString().ReplaceVariables(_variables);
                                 if (bool.TryParse(finalValue.ToString(), out var boolValue))
                                 {
                                     finalValue = boolValue;
@@ -156,16 +156,6 @@ namespace NModelsGenerator.Core
                     classAttributeList.Add(attributeString);
                 }
             return classAttributeList;
-        }
-
-        private string ReplaceVariables(string value)
-        {
-
-            foreach (var variable in _variables)
-            {
-                value = value.Replace(variable.Key, variable.Value);
-            }
-            return value;
         }
 
         private void AddNameSpace()

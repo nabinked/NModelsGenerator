@@ -12,10 +12,5 @@
             str = nm.ProcessDbNamesToObjectNames(str);
             return str;
         }
-
-        public static void ReplaceConfigVariables(this string rawConfig)
-        {
-
-        }
     }
 }

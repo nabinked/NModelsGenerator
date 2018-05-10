@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace NModelsGenerator.Common
 {
-    public class MiscUtils
+    public static class MiscUtils
     {
         public static Config GetConfig(string configFileFullPath)
         {

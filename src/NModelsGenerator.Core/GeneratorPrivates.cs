@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Dynamic;
 using System.IO;
+using System.Linq;
 using DbPortal;
 using Newtonsoft.Json;
 using NModelsGenerator.Common;
@@ -75,16 +76,21 @@ namespace NModelsGenerator.Core
         }
         private string GetNameSpaceName(IDbEntity entity)
         {
-            var nameSpace = $"{_config.RootNameSpace}.{entity.TableSchema.ToPasacalCase()}";
+            var dotSeperatedNamespaceList = new List<string>();
+            if (!string.IsNullOrWhiteSpace(_config.RootNameSpace))
+            {
+                dotSeperatedNamespaceList.Add(_config.RootNameSpace.ReplaceVariables(_variables));
+            }
             if (!string.IsNullOrWhiteSpace(_config.NameSpaceSuffix))
             {
-                nameSpace = $"{_config.RootNameSpace}.{_config.NameSpaceSuffix.ToPasacalCase()}";
+                dotSeperatedNamespaceList.Add(_config.RootNameSpace.ReplaceVariables(_variables));
             }
             if (entity.IsView)
             {
-                nameSpace += ".Views";
+                dotSeperatedNamespaceList.Add("Views");
+
             }
-            return nameSpace;
+            return string.Join(".", dotSeperatedNamespaceList);
         }
 
         private static string AddConfigJsonFile(string projectRootFolder, string configFileName)

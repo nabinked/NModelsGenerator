@@ -46,7 +46,7 @@ namespace NModelsGenerator.Core
                 AddConfigJsonFile(_projectFolder.FullName, Constants.ConfigFileName);
                 return 0;
             }
-            catch (Exception e)
+            catch
             {
                 return 1;
             }
