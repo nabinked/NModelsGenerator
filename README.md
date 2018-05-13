@@ -9,13 +9,13 @@ A visual studio extension to create new DTO classes from database tables/views i
 - Go the the project folder where you want to generate classes. Open your command line tool and go: 
 `nmg init` which will add a json config file in the same folder. Setup your config and go `nmg run`
 - Rest is quite self explanotary
-### Visual Studio Extension
+~~### Visual Studio Extension
 - Install NModelsGenerator from the visual studio extensions [marketplace/gallery](https://marketplace.visualstudio.com/items?itemName=NabinKarkiThapa.NModelsGenerator) or search for NModelsGenerator inside Visual Studio Tools > Extensions and Updates
 
-- Right click on the project and click "Generate Models in this Project". If a config.json file is not found then a new nModelsconfg.json file will be created with default schema. You can try again after providing necessary configurations.
+~~- Right click on the project and click "Generate Models in this Project". If a config.json file is not found then a new nModelsconfg.json file will be created with default schema. You can try again after providing necessary configurations.
 
 ## Usage.
-1. Add a nModelsconfig.json file to your project. The schema of the json file is like this. This is the configuration file for the generator
+1. Add a nModelsconfig.json file to your project (It will added by default when you do `nmg init` for the first time). The schema of the json file is like this. This is the configuration file for the generator
 ```json
   {
   "ConnectionString": "Connection string to your database.",
