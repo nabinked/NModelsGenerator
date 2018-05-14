@@ -45,6 +45,7 @@ A visual studio extension to create new DTO classes from database tables/views i
 |BaseClassProperties|string[]|null|Array of strings of base classes properties. This will help you to exclude any properties that are already specified in the base class|
 |Imports|string[]|["System"]|Array of strings for custom imports(using declarations).|
 |Schemas|string|All schemas in database|Comma seperated names of schemas for which models are to be generated. If not provided all schemas will be assumed|
+|RootNameSpace|string|null|Root namespace or prefix for all your classes|
 |NameSpaceSuffix|string|null|A suffix to be added after the root namespace. For example if "MyAwesomeModels" then the full namespace will be RootNameSpace.MyAwesomeModels for each class thats generated. **Accepts variables**.|
 "SchemaBasedFolders"|bool|false|if true, generated classes are placed inside a folder by the name of its schema. Otherwise a flat list of entities will be generated.
 
